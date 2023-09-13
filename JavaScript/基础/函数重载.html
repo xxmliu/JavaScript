@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>函数的重载 15:07</title>
+</head>
+
+<body>
+  <!-- 函数重载: 根据实参的数量或类型不同, 执行不同的逻辑操作; 可以让函数变成多功能函数 -->
+  <script>
+    function zhekou(money) {
+      // 判断实参的个数,  3个 就是满减
+      if (arguments.length == 3) {
+        if (money >= arguments[1]) { //超过满减条件
+          money -= arguments[2]
+        }
+      }
+
+      // 两个参数
+      // 判断实参的个数,  2个 就是打折
+      if (arguments.length == 2) {
+        // 参数2: 字符串类型 - 代表 vip
+        // 参数2: 数字类型 - 折扣
+        // typeof转类型判断是否为数字/字符串
+        if (typeof arguments[1] == 'number') {
+          money *= arguments[1]
+        }
+        if (typeof arguments[1] == 'string') {
+          if (arguments[1] == 'vip1') {
+            money *= 0.95
+          }
+          if (arguments[1] == 'vip2') {
+            money *= 0.8
+          }
+        }
+      }
+
+      return money
+    }
+
+    // zhekou : 计算折扣价格的函数
+    // 使用方式:
+    console.log(zhekou(3000, 0.8)) // 消费3000 打八折
+    console.log(zhekou(3000, 0.6)) // 6折
+
+    console.log(zhekou(3000, 2000, 500)) // 满2000 减500
+    console.log(zhekou(3000, 3000, 700)) // 满3000 减700
+
+    console.log(zhekou(3000, 'vip1')) // 95折
+    console.log(zhekou(3000, 'vip2')) // 8折
+
+  </script>
+</body>
+
+</html>

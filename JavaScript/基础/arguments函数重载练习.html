@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>arguments</title>
+</head>
+<body>
+  <script>
+
+    function calc() {
+      // 判断数组长度是1位
+      if(arguments.length == 1){
+        if(typeof arguments[0] == 'number'){
+          return arguments[0] * arguments[0]
+        }
+      }
+      // 判断数组长度是2位
+      if(arguments.length == 2){
+        if(typeof arguments[0,1] == 'number'){
+          return arguments[0] + arguments[1]
+        }
+      }
+      // 判断数组长度是3位
+      if(arguments.length == 3){
+        if(typeof arguments[0,1,2] == 'number'){
+          return arguments[0] * arguments[1] * arguments[2]
+        }
+      }
+
+      // 数组类型
+      // instanceof: 判断对象是否是指定构造函数创建的
+      if(arguments[0] instanceof Array) {
+        // let一个变量保存总和
+        let total = 0
+        // for循环出数组里的值
+        for(let i = 0; i<arguments[0].length; i++){
+          total += arguments[0][i]
+        }
+        // 退出循环return
+        return total
+      }
+    }
+
+
+    // 实现一个 calc 函数, 预期效果如下
+    console.log(calc(10)) //算出数字的平方, 即 10 * 10
+    console.log(calc(20)) //算出数字的平方, 即 20 * 20
+    console.log(calc(10, 20)) //算出和值, 即 10 + 20
+    console.log(calc(10, 20, 30)) //算出乘积, 即 10 * 20 * 30
+
+    console.log(calc([11, 22, 33])) //数组类型, 则计算出数组内容的和
+
+  </script>
+</body>
+</html>

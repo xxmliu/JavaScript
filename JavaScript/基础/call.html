@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>call 17:11</title>
+</head>
+
+<body>
+  <script>
+    // call: 短暂拜访
+    // 函数 具有一个短暂拜访对象的方法 -- call
+    function area() {
+      return this.length * this.width
+    }
+
+    var r1 = { length: 10, width: 20 }
+
+    // 任务: 把 area 函数临时放到 r1 对象中执行
+    console.log(
+      area.call(r1) // area函数短暂拜访 r1 对象
+    )
+
+    console.dir(area) // dir: 直接输出函数对象
+
+    // 练习: 立方体
+    var c1 = { length: 10, width: 20, height: 30 }
+
+    // 1. 制作 volume 函数, 计算 体积=长*宽*高
+    // 把此函数放到 c1 中执行, 获取其体积
+    function volume() {
+      return this.length * this.width * this.height
+    }
+    console.log(volume.call(c1))
+
+    // 2. 制作 area 函数, 计算 面积=(长x宽 + 长x高 + 宽x高)*2
+    // 把此函数放到 c1 中执行, 获取其面积
+    function area() {
+      return (this.width * this.length + this.length * this.height + this.width * this.height) * 2
+    }
+
+    console.log(area.call(c1))
+  </script>
+</body>
+
+</html>

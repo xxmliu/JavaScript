@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>this使用场景</title>
+</head>
+
+<body>
+  <script>
+    // 矩形对象:
+    var r1 = { length: 10, width: 20 }
+    var r2 = { length: 100, width: 120 }
+
+    // area函数: 用于计算 矩形的面积  长 * 宽
+
+    // 传统做法:
+    function area(rect) {
+      return rect.length * rect.width
+    }
+
+    console.log(
+      area(r1), area(r2)
+    );
+
+
+    // this模式的函数
+    function area1() {
+      // this: 运行时服务的对象, 所在的
+      return this.length * this.width
+    }
+
+    // 1. 把 area1 存储到对象中 :  上门服务
+    r1.area1 = area1
+    console.log(r1)
+    // 2. 执行 r1 中的 area1 函数
+    console.log(
+      r1.area1()
+    )
+    // 3. 执行完毕后, 从对象中删除.
+    delete r1.area1
+
+    // 练习: 把 area1 放到 r2 执行
+    // 1. 上门服务:  函数存入r2中
+    r2.area1 = area1
+    // 2. 在 r2 中执行
+    console.log(r2.area1())
+    // 3. 删除
+    delete r2.area1
+  </script>
+</body>
+
+</html>

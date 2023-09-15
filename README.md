@@ -400,3 +400,64 @@ function calc() {
     );
 ```
 
+# apply用法
+
+函数的一个属性, 作用和 call 方法极其相似:
+
+- 相同点：
+
+  函数.apply(对象): 把函数临时放到对象里执行, 修改函数中的this指向
+
+- 不同点:
+
+​		实参通过 数组类型 进行传递:  **函数.apply(对象, [实参, 实参, ...])**  
+
+- 用途:
+
+​		如果函数接收的是实参列表, 但是我们只有数组类型, 则利用此函数实现数组转实参列表的效果
+
+```js
+	  // call: 临时把函数放对象里执行
+      // apply: 临时把函数方对象执行
+      var emp = { name: "凯凯", salary: 10000 };
+      // 年终奖 , 扣税
+      function total(zhong, shui) {
+        return 12 * this.salary + zhong - shui; //年终奖
+      }
+      // 区别: 实参传递不同
+      // call: 实参要1个1个传递
+      console.log(total.call(emp, 50000, 30000));
+      // apply: 实参要放数组里传递
+      console.log(total.apply(emp, [50000, 30000]));
+```
+
+```js
+	// 制作一个 sum 函数, 能够计算出 所有实参的总和
+    function sum() {
+      let total = 0
+      for(let i = 0; i < arguments.length; i++){
+        total += arguments[i]
+      }
+      return total
+    }
+
+
+    let nums = [21, 32, 43, 6546, 65, 3]
+    // 用sum函数,求出 nums 数组中的元素总和
+    console.log(sum.apply(1,nums));
+
+    // 练习:
+    // max: 求出实参列表中的最大值
+    // max函数不接收数组
+    console.log(Math.max(nums));
+    // 参数1: 随便书写, max的执行不依赖于this
+    console.log(Math.max.apply(null, nums))
+    // 练习: 求最小值
+    console.log(Math.min.apply('', nums))
+
+
+    // 预期用法:
+    console.log(sum(11, 22, 33))
+    console.log(sum(5, 4, 32, 14, 45, 67))
+```
+

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>this练习</title>
+</head>
+<body>
+  <script>
+    // 立方体 长*宽*高
+    var c1 = { length:10, width:20, height:30 }
+
+    // 创建一个volume函数
+    function volume() {
+      // 传入之后调用c1，这里this指c1本身
+      return this.length * this.width * this.height
+    }
+
+    // 将volume传入到c1对象中
+    c1.volume = volume
+    // 调用c1对象中的volume
+    console.log(c1.volume())
+
+    // 结束后删除
+    delete c1.volume
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>call的参数</title>
+</head>
+
+<body>
+  <script>
+    var emp = { ename: '亮亮', salary: 20000 }
+
+    // 制作一个函数, 用于获取员工  n 个月的总薪资
+    function total(n) {
+      return this.salary * n
+    }
+
+    console.log(
+      // 6个月
+      // 参数1: 指定函数执行时所在的对象, 即 this 的指向
+      // 参数2 之后 : 传递给函数的实参列表
+      total.call(emp, 6)
+    )
+
+    ///////////////////////
+    var x = { a: 10 }
+
+    function show(b, c, d) {
+      return this.a + b + c + d
+    }
+
+    console.log(
+      show.call(x, 20, 30, 40)
+    );
+  </script>
+</body>
+
+</html>

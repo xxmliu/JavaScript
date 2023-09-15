@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>call 17:11</title>
+  <title>call</title>
 </head>
 
 <body>
@@ -37,11 +37,11 @@
 
     // 2. 制作 area 函数, 计算 面积=(长x宽 + 长x高 + 宽x高)*2
     // 把此函数放到 c1 中执行, 获取其面积
-    function area() {
+    function area1() {
       return (this.width * this.length + this.length * this.height + this.width * this.height) * 2
     }
 
-    console.log(area.call(c1))
+    console.log(area1.call(c1))
   </script>
 </body>
 

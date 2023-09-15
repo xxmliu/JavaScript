@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>call练习</title>
+</head>
+<body>
+  <script>
+
+    var emp1 = { name: "亮亮", salary: 30000 } //月薪
+    var emp2 = { name: "凯凯", salary: 10000 }
+    var emp3 = { name: "泡泡", salary: 20000 }
+
+    // 所得税汇算函数  shui
+    // 年薪 10~ 15w   扣税 5%
+    // 年薪 >15 ~ 20  扣税 10%
+    // 年薪 >20 ~ 30  扣税 15%
+    // 年薪 >30 ~ 40  扣税 20%
+    // >40  扣税40%;   <10  不扣税
+    function shui() {
+      // 算年薪
+      let total = this.salary * 12
+      // 小于10w
+      if( total<100000 ) return 0
+      // 年薪10~15w
+      if( total>=100000 && total<150000 ) return total * 0.05
+      // 年薪15~20w
+      if( total>=150000 && total<200000 ) return total * 0.1
+      // 年薪20~30
+      if( total>=200000 && total<300000 ) return total * 0.15
+      // 年薪30~40
+      if( total>=300000 && total<400000 ) return total * 0.2
+      // 大于40
+      if( total>=400000 ) return total * 0.4
+    }
+
+    // call短暂访问emp对象，结束后离开
+    console.log(shui.call(emp1));
+    console.log(shui.call(emp2));
+    console.log(shui.call(emp3));
+
+  </script>
+</body>
+</html>

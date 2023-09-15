@@ -461,3 +461,52 @@ function calc() {
     console.log(sum(5, 4, 32, 14, 45, 67))
 ```
 
+# bind的用法
+
+提前绑定 函数和运行时的资源, 简化后续调用时的格式  
+
+作用: 把函数和其运行时需要的资源捆绑在一起, 返回新的函数  
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bind</title>
+</head>
+<body>
+
+  <!-- 问题: 在HTML代码中, 掺杂过多的 JS 代码, 导致些许混乱 -->
+  <button onclick="total.call(emp, 50000, 30000)">计算年薪</button>
+  <br>
+  <!-- 触发bind函数 -->
+  <button onclick="total_bind()">计算年薪</button>
+
+  <script>
+
+    let emp = { ename: "凯凯", salary: 10000 }
+    
+    function total(zhong, shui) {
+      alert(this.salary * 12 + zhong - shui)
+    }
+    
+    // bind: 绑定
+    // 作用: 把函数和其运行时需要的资源捆绑在一起, 返回新的函数
+    var total_bind = total.bind(emp, 50000, 30000)
+
+    console.dir(total_bind);
+
+  </script>
+</body>
+</html>
+```
+
+# call、apply、bind的区别
+
+**函数触发的三种方案**  
+
+- call: 临时把函数放在对象中执行, 用于设定this的指向
+- apply: 临时把函数放对象中执行, 可以把数组 转为 参数列表
+- bind: 提前绑定 函数和运行时的资源, 简化后续调用时的格式
+

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>构造函数 10:23</title>
+  </head>
+  <body>
+    <script>
+
+      // 给老师建立档案
+      var teachers = [
+        // 代码中 不应该出现 大批量的复制粘贴情况.
+        // 通常用函数实现复用 -- 重复使用
+        { ename: "晓宇", age: 18, phone: "18989787444" },
+        { ename: "亮亮", age: 28, phone: "18944444446" },
+        { ename: "小新", age: 38, phone: "18933338944" },
+        { ename: "铭铭", age: 32, phone: "18985478784" },
+        { ename: "文华", age: 35, phone: "15689789879" },
+        { ename: "凯凯", age: 25, phone: "13659879797" },
+      ];
+      console.log(teachers);
+
+      // 新建一个 Teacher 函数, 帮我们生成 讲师 对象
+      // 函数名大驼峰
+      function Teacher(ename, age, phone) {
+        var obj = {};
+        obj.ename = ename;
+        obj.age = age;
+        obj.phone = phone;
+        return obj;
+      }
+      // 构造函数: 功能是用于构建创造对象的函数, 称为构造函数.
+      var t1 = Teacher("凯凯", 32, "10086");
+      console.log(t1);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>new</title>
+</head>
+<body>
+  <script>
+
+    // 创建一个构造函数函数
+    // new运算符: 搭配构造函数使用时, 可以自动完成一些代码
+    function Student(name, age, number){
+      // this非常灵活: 默认代表函数运行时所在对象
+      // 如果是 new 运算符触发, 则this指向 当前构造出来的对象
+      // 省略的代码如下:
+
+      // this = {}
+      this.name = name
+      this.age = age
+      this.number = number
+      // return this
+    }
+
+    // 当系统发现 函数前存在 new 运算符, 则认为此函数为构造函数
+    // 就会自动辅助此函数 完成一些构造函数 特有的代码
+    let s1 = new Student('张三', '22', '001')
+    console.log(s1);
+
+  </script>
+</body>
+</html>

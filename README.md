@@ -510,3 +510,61 @@ function calc() {
 - apply: 临时把函数放对象中执行, 可以把数组 转为 参数列表
 - bind: 提前绑定 函数和运行时的资源, 简化后续调用时的格式
 
+# 构造函数
+
+构造函数: 功能是用于构建创造对象的函数, 称为构造函数  
+
+```js
+	  // 给老师建立档案
+      var teachers = [
+        // 代码中 不应该出现 大批量的复制粘贴情况.
+        // 通常用函数实现复用 -- 重复使用
+        { ename: "晓宇", age: 18, phone: "18989787444" },
+        { ename: "亮亮", age: 28, phone: "18944444446" },
+        { ename: "小新", age: 38, phone: "18933338944" },
+        { ename: "铭铭", age: 32, phone: "18985478784" },
+        { ename: "文华", age: 35, phone: "15689789879" },
+        { ename: "凯凯", age: 25, phone: "13659879797" },
+      ];
+      console.log(teachers);
+
+      // 新建一个 Teacher 函数, 帮我们生成 讲师 对象
+      // 函数名大驼峰
+      function Teacher(ename, age, phone) {
+        var obj = {};
+        obj.ename = ename;
+        obj.age = age;
+        obj.phone = phone;
+        return obj;
+      }
+      // 构造函数: 功能是用于构建创造对象的函数, 称为构造函数.
+      var t1 = Teacher("凯凯", 32, "10086");
+      console.log(t1);
+```
+
+# new运算符
+
+- new运算符: 搭配构造函数使用时, 可以自动完成一些代码
+- 函数前存在 new 运算符, 则认为此函数为构造函数
+
+```js
+    // 创建一个构造函数函数
+    // new运算符: 搭配构造函数使用时, 可以自动完成一些代码
+    function Student(name, age, number){
+      // this非常灵活: 默认代表函数运行时所在对象
+      // 如果是 new 运算符触发, 则this指向 当前构造出来的对象
+      // 省略的代码如下:
+
+      // this = {}
+      this.name = name
+      this.age = age
+      this.number = number
+      // return this
+    }
+
+    // 当系统发现 函数前存在 new 运算符, 则认为此函数为构造函数
+    // 就会自动辅助此函数 完成一些构造函数 特有的代码
+    let s1 = new Student('张三', '22', '001')
+    console.log(s1);
+```
+

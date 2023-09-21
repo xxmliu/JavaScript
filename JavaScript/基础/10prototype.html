@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>原型</title>
+  </head>
+  <body>
+    <script>
+      // 制作生成矩形对象的构造函数 Rect
+      function Rect(length, width) {
+        // new运算符构造对象时, 会额外默认完成
+        // 为当前构造的对象, 关联其父元素 为 构造函数的prototype
+        // this.__proto__ = Rect.prototype
+        this.length = length;
+        this.width = width;
+        // 新增计算面积的方法
+        // this.area = function () {
+        // return this.length * this.width
+        // }
+      }
+      // 构造函数 -- 相当于 母亲角色, 能生对象
+      // 构造函数必然存在 prototype 属性, 即其丈夫
+      // prototype.constructor : 关联到构造函数, 即丈夫的妻子
+      console.dir(Rect); //查看 prototype 属性
+      // 把共享的方法,存储在 prototype 原型中
+      Rect.prototype.area = function () {
+        return this.length * this.width;
+      };
+      // 用法:
+      // r1: 母亲通过new方案 生下来的对象
+      var r1 = new Rect(10, 20); // {length: 10, width:20}
+      console.log(r1);
+      // 母亲的丈夫 == 孩子的父亲
+      // 原型属性的名称 : __proto__ 是未经美化的原属性名
+      // 由于官方的要求, 浏览器必须按照固定规则 美化后再显示
+      console.log(Rect.prototype == r1.__proto__); // true
+      console.log(
+        // JS引擎自带 原型链机制:
+        // 白话文: 我自己没有的东西, 找我爸爸要
+        // 专业: 自身没有的属性, 到原型链__proto__中查找
+        r1.area()
+      );
+      // 构造函数能够反复多次调用, 每次调用都会执行函数中的代码
+      var r2 = new Rect(20, 30);
+      var r3 = new Rect(40, 50);
+      // 代表两个对象中的area 函数非同一个
+      console.log(r2.area == r3.area); //false
+      // 问题: 在构造函数中, 为对象添加方法属性, 导致内存的浪费. 因为方法是可以共享的
+    </script>
+  </body>
+</html>

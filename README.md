@@ -543,7 +543,7 @@ function calc() {
 
 # 构造函数
 
-构造函数: 功能是用于构建创造对象的函数, 称为构造函数  
+构造函数: 功能是用于构建创造对象的函数, 称为构造函数，函数名大驼峰
 
 ```js
 	  // 给老师建立档案
@@ -607,5 +607,66 @@ let arr = [1, 2, 3, 4, -2, -4, -6]
 for(let i = 0; i < arr.length; i++){
   console.log(arr[i] > 0 ? '正数' : '负数');
 }
+```
+
+# 原型和原型链
+
+- 构造函数构造出来的对象，都有一个`__proto__`属性 ，这个`__proto__`指向构造函数的prototype
+
+- 总结:为什么要设计原型模式?
+
+  ​	节省内存
+
+- 如何节省的?
+
+  ​	把公共的方法存储在 共享的对象 : 构造函数.prototype 中
+
+- new 运算符生成对象时, 自动为对象关联 `__proto__`到 共享对象 prototype 上
+
+- JS引擎的原型链设计, 全自动
+
+  ​	如果 对象.属性 对象自身没有, 则自动到`__proto__` 中查找!
+
+```js
+	  // 制作生成矩形对象的构造函数 Rect
+      function Rect(length, width) {
+        // new运算符构造对象时, 会额外默认完成
+        // 为当前构造的对象, 关联其父元素 为 构造函数的prototype
+        // this.__proto__ = Rect.prototype
+        this.length = length;
+        this.width = width;
+        // 新增计算面积的方法
+        // this.area = function () {
+        // return this.length * this.width
+        // }
+      }
+      // 构造函数 -- 相当于 母亲角色, 能生对象
+      // 构造函数必然存在 prototype 属性, 即其丈夫
+      // prototype.constructor : 关联到构造函数, 即丈夫的妻子
+      console.dir(Rect); //查看 prototype 属性
+      // 把共享的方法,存储在 prototype 原型中
+      Rect.prototype.area = function () {
+        return this.length * this.width;
+      };
+      // 用法:
+      // r1: 母亲通过new方案 生下来的对象
+      var r1 = new Rect(10, 20); // {length: 10, width:20}
+      console.log(r1);
+      // 母亲的丈夫 == 孩子的父亲
+      // 原型属性的名称 : __proto__ 是未经美化的原属性名
+      // 由于官方的要求, 浏览器必须按照固定规则 美化后再显示
+      console.log(Rect.prototype == r1.__proto__); // true
+      console.log(
+        // JS引擎自带 原型链机制:
+        // 白话文: 我自己没有的东西, 找我爸爸要
+        // 专业: 自身没有的属性, 到原型链__proto__中查找
+        r1.area()
+      );
+      // 构造函数能够反复多次调用, 每次调用都会执行函数中的代码
+      var r2 = new Rect(20, 30);
+      var r3 = new Rect(40, 50);
+      // 代表两个对象中的area 函数非同一个
+      console.log(r2.area == r3.area); //false
+      // 问题: 在构造函数中, 为对象添加方法属性, 导致内存的浪费. 因为方法是可以共享的
 ```
 

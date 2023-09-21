@@ -1,4 +1,35 @@
+# CSS画出0.5px的线
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>0.5px的线</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .px {
+      width: 100px;
+      height: 1px;
+      background-color: #000;
+      transform: scaleY(0.5);
+    }
+  </style>
+</head>
+<body>
+  <p class="px"></p>
+</body>
+</html>
+```
+
+
+
 # CSS父子元素定位的使用
+
 首页展示，利用定位完成。
 
 ```html
@@ -566,5 +597,15 @@ function calc() {
     // 就会自动辅助此函数 完成一些构造函数 特有的代码
     let s1 = new Student('张三', '22', '001')
     console.log(s1);
+```
+
+# 三目运算符
+
+```js
+let arr = [1, 2, 3, 4, -2, -4, -6]
+
+for(let i = 0; i < arr.length; i++){
+  console.log(arr[i] > 0 ? '正数' : '负数');
+}
 ```
 

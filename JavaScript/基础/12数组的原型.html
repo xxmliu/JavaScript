@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>数组原型</title>
+  </head>
+  <body>
+    <!--
+      JS: 万物皆对象, 对象由构造而来
+    -->
+    <script>
+      var a = 5; // 字面量写法: 属于语法糖
+      console.log(a.toFixed(2));
+      //构造写法
+      var a = new Number(5);
+      console.log(a);
+      // 数组
+      var nums = [11, 22, 33, 44, 55];
+      console.log(nums);
+      // 为数组的原型增加一个求和的方法 sum
+      Array.prototype.sum = function () {
+        // this: 函数运行时所在的对象
+        let total = 0
+        for(let i = 0; i < this.length; i++){ 
+          total += this[i]
+        }
+        return total
+      };
+      console.log(nums.sum());
+    </script>
+  </body>
+</html>

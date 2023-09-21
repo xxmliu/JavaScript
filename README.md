@@ -670,3 +670,26 @@ for(let i = 0; i < arr.length; i++){
       // 问题: 在构造函数中, 为对象添加方法属性, 导致内存的浪费. 因为方法是可以共享的
 ```
 
+# 数组的元素
+
+```js
+      var a = 5; // 字面量写法: 属于语法糖
+      console.log(a.toFixed(2));
+      //构造写法
+      var a = new Number(5);
+      console.log(a);
+      // 数组
+      var nums = [11, 22, 33, 44, 55];
+      console.log(nums);
+      // 为数组的原型增加一个求和的方法 sum
+      Array.prototype.sum = function () {
+        // this: 函数运行时所在的对象
+        let total = 0
+        for(let i = 0; i < this.length; i++){ 
+          total += this[i]
+        }
+        return total
+      };
+      console.log(nums.sum());
+```
+

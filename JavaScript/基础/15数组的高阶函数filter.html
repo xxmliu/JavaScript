@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>filter</title>
+  </head>
+  <body>
+    <script>
+      // filter: 过滤
+      // 把数组中满足条件的元素 过滤出来, 形成新的数组
+      var nums = [12, 3, 54, 23, 43, 65, 67];
+      // 把大于20的元素找出来
+      var res = nums.filter((value, index, array) => {
+        return value > 20;
+      });
+      var res = nums.filter((value) => value > 20);
+      console.log(res);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>every</title>
+  </head>
+  <body>
+    <script>
+      // 数组的高阶函数 -- 不属于ES6的新特性
+      // 高阶函数: 一个函数的内部使用了其他函数, 常见的带有回调函数的函数;
+      console.log(Array.prototype);
+      // every: 每一个
+      // 数组中, every可以自动遍历数组, 检查每一个元素是否符合指定条件
+      // every最终结果: 全真则真, 有假为假; 与 逻辑与操作相似 &&
+      var nums = [12, 432, 453, 65, -32, 12, 43];
+      // 需求: 判断数组中 是否 所有的/每一个 值都是正数
+      // 实参: 要求函数类型
+      // every会自动遍历数组, 把数组中的每个元素 都传递给 箭头函数
+      var res = nums.every((value, index, array) => {
+        // 三个参数: 值, 序号, 数组本身
+        // 关系: array[index] == value
+        console.log(value, index, array);
+        // 返回 判断的结果, 例如 >0 代表正数
+        return value > 0;
+      });
+      console.log(res ? "都是正数" : "非都是正数");
+    </script>
+  </body>
+</html>

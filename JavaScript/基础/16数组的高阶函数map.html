@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>map</title>
+  </head>
+  <body>
+    <ul id="box">
+      <li></li>
+    </ul>
+    <div id="box1"></div>
+    <script>
+      // map: 映射
+      // 把数组中的元素 按照规律进行转换, 形成新的数组
+      var nums = [1, 2, 3, 4, 5, 6];
+      var res1 = nums.map((value, index, array) => {
+        return value * 2;
+      });
+      var res1 = nums.map((value) => value * 2);
+      console.log(res1);
+
+      // 实战练习
+      var skills = ["html", "css", "js", "dom"];
+      // 把每个元素放在 li 标签里: <li>html</li>
+      var res2 = skills.map((value, index, array) => {
+        return `<li>${value}</li>`;
+      });
+      var res2 = skills.map((value) => `<li>${value}</li>`);
+      // 如何把数组转化/拼接成字符串? join
+      // join的参数, 代表间隔的符号, 默认是 逗号
+      console.log(res2.join(""));
+      box.innerHTML = res2.join("");
+      console.log(res2);
+
+      // 练习
+      let names = ['泡泡', '小亮', '小新', '小明']
+      let res3 = names.map(value => `<button>${value}</button>`)
+      box1.innerHTML = res3.join('')
+
+    </script>
+  </body>
+</html>

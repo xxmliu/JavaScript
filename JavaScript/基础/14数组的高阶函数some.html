@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>some</title>
+  </head>
+  <body>
+    <script>
+      // some: 一些, 至少有一个
+      // 只要存在 1个 满足条件的元素, 就算真; 类似逻辑或 ||
+      var nums = [21, 3, 34, -54, 65, 34, 43, 6];
+      // 判断: 是否存在负数
+      var res = nums.some((value, index, array) => {
+        练习;
+        return value < 0; // 判断结果: 是否有值是负数
+      });
+      // 简化
+      var res = nums.some((value) => value < 0);
+      console.log(res ? "存在负数" : "不存在负数");
+    </script>
+  </body>
+</html>

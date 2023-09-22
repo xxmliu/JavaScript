@@ -693,3 +693,106 @@ for(let i = 0; i < arr.length; i++){
       console.log(nums.sum());
 ```
 
+# 数组的高阶函数
+
+**高阶函数: 函数中使用了其他函数, 就叫高阶函数**  ----不属于ES6的新特性
+
+- every：和逻辑与&&相似，全都满足条件
+- some：和逻辑或||相似，至少有一个满足
+- filter：把满足条件的过滤出来
+- map：映射，把数组每个元素处理返回值后，返回新的数组
+
+```js
+	  // 数组的高阶函数 -- 不属于ES6的新特性
+      // 高阶函数: 一个函数的内部使用了其他函数, 常见的带有回调函数的函数;
+      console.log(Array.prototype);
+      // every: 每一个
+      // 数组中, every可以自动遍历数组, 检查每一个元素是否符合指定条件
+      // every最终结果: 全真则真, 有假为假; 与 逻辑与操作相似 &&
+      var nums = [12, 432, 453, 65, -32, 12, 43];
+      // 需求: 判断数组中 是否 所有的/每一个 值都是正数
+      // 实参: 要求函数类型
+      // every会自动遍历数组, 把数组中的每个元素 都传递给 箭头函数
+      var res = nums.every((value, index, array) => {
+        // 三个参数: 值, 序号, 数组本身
+        // 关系: array[index] == value
+        console.log(value, index, array);
+        // 返回 判断的结果, 例如 >0 代表正数
+        return value > 0;
+      });
+      console.log(res ? "都是正数" : "非都是正数");
+```
+
+```js
+	  // some: 一些, 至少有一个
+      // 只要存在 1个 满足条件的元素, 就算真; 类似逻辑或 ||
+      var nums = [21, 3, 34, -54, 65, 34, 43, 6];
+      // 判断: 是否存在负数
+      var res = nums.some((value, index, array) => {
+        练习;
+        return value < 0; // 判断结果: 是否有值是负数
+      });
+      // 简化
+      var res = nums.some((value) => value < 0);
+      console.log(res ? "存在负数" : "不存在负数");
+```
+
+```js
+	  // filter: 过滤
+      // 把数组中满足条件的元素 过滤出来, 形成新的数组
+      var nums = [12, 3, 54, 23, 43, 65, 67];
+      // 把大于20的元素找出来
+      var res = nums.filter((value, index, array) => {
+        return value > 20;
+      });
+      var res = nums.filter((value) => value > 20);
+      console.log(res);
+```
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>map</title>
+  </head>
+  <body>
+    <ul id="box">
+      <li></li>
+    </ul>
+    <div id="box1"></div>
+    <script>
+      // map: 映射
+      // 把数组中的元素 按照规律进行转换, 形成新的数组
+      var nums = [1, 2, 3, 4, 5, 6];
+      var res1 = nums.map((value, index, array) => {
+        return value * 2;
+      });
+      var res1 = nums.map((value) => value * 2);
+      console.log(res1);
+
+      // 实战练习
+      var skills = ["html", "css", "js", "dom"];
+      // 把每个元素放在 li 标签里: <li>html</li>
+      var res2 = skills.map((value, index, array) => {
+        return `<li>${value}</li>`;
+      });
+      var res2 = skills.map((value) => `<li>${value}</li>`);
+      // 如何把数组转化/拼接成字符串? join
+      // join的参数, 代表间隔的符号, 默认是 逗号
+      console.log(res2.join(""));
+      box.innerHTML = res2.join("");
+      console.log(res2);
+
+      // 练习
+      let names = ['泡泡', '小亮', '小新', '小明']
+      let res3 = names.map(value => `<button>${value}</button>`)
+      box1.innerHTML = res3.join('')
+
+    </script>
+  </body>
+</html>
+
+```
+

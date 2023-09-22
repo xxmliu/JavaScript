@@ -796,3 +796,161 @@ for(let i = 0; i < arr.length; i++){
 
 ```
 
+# AJAX用法和封装AJAX
+
+AJAX练习：
+
+```js
+	function url1() {
+      let url = 'https://api.xin88.top/car/news.json'
+      const xhr = new XMLHttpRequest()
+      xhr.open('get',url)
+      // 回调函数
+      xhr.onload = function () { 
+        let data = JSON.parse(xhr.response)
+        console.log(data);
+        // 把请求的数组放到li
+        let res = data.data.list.map(value => `<li>${value.title}</li>`)
+        box.innerHTML = res.join(' ')
+      }
+      xhr.send()
+    }
+    url1()
+
+    // 练习
+    function url2() { 
+      let url = 'https://mfresh.xin88.top/data/news_select.php'
+      // 1. 利用AJAX 请求接口中的数据
+      // 2. 把数据中的内容, 转为 li 标签, 显示出标题
+      // 3. 把 li 标签显示到页面上
+      const xhr = new XMLHttpRequest()
+      xhr.open('get', url)
+      xhr.onload = function () { 
+        let data = JSON.parse(xhr.response)
+        console.log(data);
+        let res = data.data.map(value => `<li>${value.title}</li>`)
+        box1.innerHTML = res.join(' ')
+      }
+      xhr.send()
+    }
+    url2()
+
+    // 练习
+    function url3() { 
+      let url = 'https://api.xin88.top/douban/movies.json'
+      const xhr = new XMLHttpRequest()
+      xhr.open('get', url)
+      xhr.onload = function () { 
+        let data = JSON.parse(xhr.response)
+        let res = data.subjects.map( value => `<li>${value.title}</li>` )
+        box2.innerHTML = res.join(' ')
+      }
+      xhr.send()
+    }
+    url3()
+```
+
+封装AJAX：
+
+```js
+// 需求:
+// get(地址, 回调函数)
+// callback:回调; 简写: cb
+function get(url, cb) {
+  let xhr = new XMLHttpRequest();
+  xhr.open('get', url);
+  xhr.onload = function () { 
+    let data = JSON.parse(xhr.response);
+
+    cb(data)    // 传到回调函数中
+  }
+  xhr.send();
+}
+```
+
+使用封装的AJAX：
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="no-referrer">
+  <title>AJAX练习</title>
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    #box {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    li {
+      margin: 10px;
+      list-style: none;
+      border-radius: 9px;
+      box-shadow: 3px 3px 3px #ccc;
+    }
+    li:hover {
+      box-shadow: 5px 5px 5px gray;
+    }
+
+    li > img {
+      border-radius:  9px 9px 0 0;
+    }
+
+    li > div {
+      position: relative;
+    }
+
+    li > div > b {
+      margin-left: 10px;
+    }
+
+    li > div > span {
+      color: #AB934D;
+      position: absolute;
+      right: 5%;
+    }
+
+  </style>
+</head>
+<body>
+  <ul id="box">
+    <li>
+      <img src="" alt="">
+      <div>
+        <b></b>
+        <span></span>
+      </div>
+    </li>
+  </ul>
+  <script src="./common.js"></script>
+  <script>
+    let url = 'https://api.xin88.top/douban/movies.json'
+    get(url, data => {
+      console.log(data);
+      let res = data.subjects.map(value => {
+        return `
+        <li>
+          <img src="${value.cover}" alt="图片丢失">
+          <div>
+            <b>${value.title}</b>
+            <span>${value.rate}</span>
+          </div>
+        </li>
+        
+        `
+      })
+      box.innerHTML = res.join(' ')
+    })
+  </script>
+</body>
+</html>
+```
+

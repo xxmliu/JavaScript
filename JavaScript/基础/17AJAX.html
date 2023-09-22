@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AJAX</title>
+</head>
+<body>
+  <ul id="box"></ul>
+  <ul id="box1"></ul>
+  <ul id="box2"></ul>
+  <script>
+    function url1() {
+      let url = 'https://api.xin88.top/car/news.json'
+      const xhr = new XMLHttpRequest()
+      xhr.open('get',url)
+      // 回调函数
+      xhr.onload = function () { 
+        let data = JSON.parse(xhr.response)
+        console.log(data);
+        // 把请求的数组放到li
+        let res = data.data.list.map(value => `<li>${value.title}</li>`)
+        box.innerHTML = res.join(' ')
+      }
+      xhr.send()
+    }
+    url1()
+
+    // 练习
+    function url2() { 
+      let url = 'https://mfresh.xin88.top/data/news_select.php'
+      // 1. 利用AJAX 请求接口中的数据
+      // 2. 把数据中的内容, 转为 li 标签, 显示出标题
+      // 3. 把 li 标签显示到页面上
+      const xhr = new XMLHttpRequest()
+      xhr.open('get', url)
+      xhr.onload = function () { 
+        let data = JSON.parse(xhr.response)
+        console.log(data);
+        let res = data.data.map(value => `<li>${value.title}</li>`)
+        box1.innerHTML = res.join(' ')
+      }
+      xhr.send()
+    }
+    url2()
+
+    // 练习
+    function url3() { 
+      let url = 'https://api.xin88.top/douban/movies.json'
+      const xhr = new XMLHttpRequest()
+      xhr.open('get', url)
+      xhr.onload = function () { 
+        let data = JSON.parse(xhr.response)
+        let res = data.subjects.map( value => `<li>${value.title}</li>` )
+        box2.innerHTML = res.join(' ')
+      }
+      xhr.send()
+    }
+    url3()
+
+  </script>
+</body>
+</html>

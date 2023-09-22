@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>forEach练习</title>
+</head>
+<body>
+  <div id="box"></div>
+  <script>
+    let nums = [12, 23, 34, 45, 56, 67]
+
+    // for-of方法
+    let sum = 0
+    for (const value of nums) {
+      sum += value
+    }
+    console.log(sum);
+
+    sum = 0
+    // forEach方法
+    nums.forEach(value => {
+      sum += value
+    })
+    console.log(sum);
+
+    ////////////////////////////////
+    // 结合 html
+    var skills = ['html', 'css', 'js', 'dom']
+    // 把元素转化成 button 标签, 拼接到一起形成字符串
+    // 昨天: 先用map映射, 再用 join 拼接
+    var template = '' //模板
+    skills.forEach(value => template += `<button>${value}</button>`)
+    console.log(template);
+    box.innerHTML = template
+
+  </script>
+</body>
+</html>

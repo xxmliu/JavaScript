@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>reduce</title>
+  </head>
+  <body>
+    <div id="box"></div>
+    <script>
+      // reduce: 减少, 合并
+      // 把数组中的元素 经过处理之后, 合并成 1个值
+      var nums = [1, 2, 3, 4, 5, 6, 7, 8];
+      // 任务: 把数组的元素 累加到一起, 得到总和
+      // 参数1: 每个元素都被此函数处理, 其中 box 形参, 接收的是 当前的总和
+      // 参数2: 初始时的 总和
+      var res = nums.reduce((box, value, index, array) => {
+        return box + value;
+      }, 0);
+      console.log(res);
+      /////////////////////////////////////////////////////////////////
+      var skills = ["js", "dom", "html", "css"];
+      // 把元素转为按钮标签, 拼接到一起
+      var res = skills.reduce((box, value) => {
+        return box + `<button>${value}</button>`;
+      }, "");
+      console.log(res);
+      box.innerHTML = res;
+    </script>
+  </body>
+</html>

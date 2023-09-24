@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>style练习</title>
+</head>
+
+<style>
+
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  #box {
+    width: 400px;
+    height: 60px;
+    line-height: 60px;
+    display: flex;
+    justify-content: center;
+    background-color: #ccc;
+  }
+
+  #box > li {
+    list-style: none;
+    width: calc(100% / 4);
+    height: 100%;
+    text-align: center;
+  }
+
+</style>
+
+<body>
+  <ul id="box">
+    <li>html</li>
+    <li>css</li>
+    <li>js</li>
+    <li>dom</li>
+  </ul>
+
+  <script>
+
+    // 需求: 点击li 让其变为红色
+    // 问题: 要操作的元素个数>1个, 即多个. 考虑批量修改的方案
+    // 利用 标签选择方案, 查询到所有的li
+    let lis = document.getElementsByTagName('li')
+    console.log(lis);
+
+    // 用 for ... of 遍历这个伪数组
+    for (const li of lis) {
+      li.onclick = function () {
+        // this: 此变量非常灵活, 需要运行时才知道代表什么
+        // 所以: vscode 静态分析代码时 不知道this是什么, 所以无法提供准确的提示
+        li.style.backgroundColor = 'red'
+      }
+    }
+
+  </script>
+
+</body>
+</html>

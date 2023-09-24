@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>元素的事件</title>
+  </head>
+  <body>
+    <!-- 事件: 在元素上触发的一些事情, 能够触发的事件都被系统提前规定好 -->
+    <!-- https://www.runoob.com/jsref/dom-obj-event.html -->
+    <button id="btn1" onclick="alert('Hello!')">Click Me!</button>
+    <!-- 尝试通过 DOM方式, 给这个按钮添加事件 -->
+    <button id="btn2">Hello!</button>
+    <button id="btn3">点我打印 666</button>
+    <script>
+      const btn3 = document.getElementById("btn3");
+      btn3.onclick = function () {
+        alert("666");
+      };
+      // 1. 先查询到 btn2 元素
+      const btn2 = document.getElementById("btn2");
+      // 2. 为元素的onclick属性赋值
+      btn2.onclick = function () {
+        alert("DOM!!");
+      };
+      console.dir(btn2); // 查看onclick属性
+      // id: 唯一标识; 说明理论上 只有一个 满足条件的元素
+      // 所以 : getElementById 的结果是 元素本身
+      // 区分: 昨天的根据标签名查找 tagName
+      // 页面中可以存在多个 相同的标签, 例如 很多个 li. 所以查询结果是类数组
+      // 从document中, 查找 id=btn1 的元素style操作
+      const btn1 = document.getElementById("btn1");
+      console.log("btn1:", btn1);
+      // 所有 on 开头的属性, 都是事件相关的
+      console.dir(btn1);
+    </script>
+  </body>
+</html>

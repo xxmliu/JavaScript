@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>style</title>
+</head>
+<body>
+  <!-- 1个页面元素的样式, 由哪些因素决定? -->
+  <!-- 1. 原本本身的样式: w3c的标准规定 -->
+  <!-- 2. 浏览器品牌 的 个性化美化 -->
+  <!-- 3. class: 用户通过 class方案 -->
+  <!-- 4. style: 内联样式的个性化 -->
+  <button id="btn1">点我变色</button>
+  <hr>
+  <div id="box1" style="width: 200px; height: 200px; background-color: gray;"></div>
+  <script>
+
+
+    // 1. 从document中查找到按钮元素
+    let btn1 = document.getElementById('btn1')
+
+    btn1.onclick = function () {
+      // 内联样式的优先级是最高的, 当这里赋值时, 会覆盖 前三种因素的效果
+      // onclick属性 属于 btn1, 触发时 是btn1 触发的, 所以this是btn1
+      this.style.color = 'green'
+      // JS规范: 属性名不允许带有 -, 所以默认会以 小驼峰的形式出现
+      box1.style.backgroundColor = 'black'
+    }
+
+    let box1 = document.getElementById('box1')
+    box1.onclick = function () {
+      this.style.backgroundColor = 'red'
+    }
+
+  </script>
+</body>
+</html>

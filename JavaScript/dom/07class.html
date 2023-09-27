@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./reset.css" />
+    <title>class</title>
+    <style>
+      li {
+        padding: 5px 10px;
+        background-color: #ccc;
+        display: inline-block;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      li:hover {
+        box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.1);
+      }
+      li.active {
+        background-color: orange;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>点击选择午餐:</h2>
+    <ul>
+      <li class="active">KFC</li>
+      <li>牛肉面</li>
+      <li>麻辣烫</li>
+      <li>黄焖鸡</li>
+      <li>螺蛳粉</li>
+    </ul>
+    <script>
+      // 需求: 点击 li 之后, 把他的 class="active"
+      const lis = document.querySelectorAll("li");
+      // 遍历查找到的元素们, 挨个绑定 点击事件
+      lis.forEach(
+        (li) =>
+          (li.onclick = function () {
+            // 在JS中, class 是关键词, 不能作为属性名
+            // 改为 className
+            console.dir(this); //找到 和 class 有关的属性
+            // 切换效果: 有->无; 无->有;
+            if (this.className == "") {
+              this.className = "active";
+            } else {
+              this.className = "";
+            }
+          })
+      );
+    </script>
+  </body>
+</html>

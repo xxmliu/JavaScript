@@ -184,3 +184,31 @@ function get(url, cb) {
 - reduce
 
 ​		缺点: 理解上有难度, 使用少
+
+# dom初体验
+
+**DOM: Document Object Model 文档 对象 模型**
+
+- 文档: html代码
+- 对象: js对象
+- 模型: html代码 转换成 js对象 的这套流程
+
+**浏览器中真正显示的是 全局中的document 对象**
+
+- 可以通过JS来修改document中的值, 进而影响到页面上的内容展示
+
+# 元素的事件
+
+**事件:** 在元素上触发的一些事情, 能够触发的事件都被系统提前规定好 
+
+- 所有 **on** 开头的属性, 都是事件相关的
+
+https://www.runoob.com/jsref/dom-obj-event.html 
+
+# style操作
+
+# querySelectorAll
+
+- query:查询 selector:选择器 all:所有
+- 通过选择器查找所有符合的元素
+- 此方式查询的结果, 是类数组类型, 但是其原型 NodeList中存在forEach方法可以实现遍历操作

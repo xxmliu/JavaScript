@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>querySelectorAll</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    #boy {
+      width: 200px;
+      height: 50px;
+      line-height: 50px;
+      display: flex;
+      justify-content: center;
+      background-color: #ccc;
+    }
+
+    #boy > li {
+      width: calc(100% / 3);
+      text-align: center;
+    }
+
+    #girl {
+      width: 200px;
+      height: 50px;
+      line-height: 50px;
+      display: flex;
+      justify-content: center;
+      background-color: gray;
+    }
+
+    #girl > li {
+      width: calc(100% / 3);
+      text-align: center;
+    }
+
+
+  </style>
+  <body>
+    <ul id="boy">
+      <li>凯凯</li>
+      <li>铭铭</li>
+      <li>亮亮</li>
+    </ul>
+    <ul id="girl">
+      <li>泡泡</li>
+      <li>楠楠</li>
+      <li>瑶瑶</li>
+    </ul>
+    <script>
+      // querySelectorAll
+      // query:查询 selector:选择器 all:所有
+      // 通过选择器查找所有符合的元素
+      // qsa
+      const girl_lis = document.querySelectorAll("#girl>li");
+      console.log(girl_lis);
+      // 此方式查询的结果, 是类数组类型, 但是其原型 NodeList中存在forEach方法可以实现遍历操作
+      girl_lis.forEach((li) => {
+        li.onclick = function () {
+          this.style.color = "pink";
+        };
+      });
+      // document: 整个html代码
+      // 要想精确查找: 先找 id=boy 的元素
+      const boy = document.getElementById("boy");
+      // 再从boy里面查, 实现元素的小范围查找
+      const boy_lis = boy.getElementsByTagName("li");
+      console.log(boy_lis);
+      for (const li of boy_lis) {
+        li.onclick = function () {
+          li.style.backgroundColor = "blue";
+          li.style.color = "red"; 
+        };
+      }
+    </script>
+  </body>
+</html>
+  

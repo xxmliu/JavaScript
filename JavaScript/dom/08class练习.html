@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./reset.css">
+    <title>class练习</title>
+  </head>
+  <style>
+
+    li {
+      display: inline-block;
+      padding: 5px 10px;
+      background-color: #ccc;
+      border-radius: 6px;
+    }
+
+    li.active {
+      color: white;
+      background-color: orange;
+    }
+
+  </style>
+  <body>
+    <h2>勾选你的技术栈:</h2>
+    <ul>
+      <li class="active">HTML</li>
+      <li>CSS</li>
+      <li>JS</li>
+      <li>DOM</li>
+      <li>Vue</li>
+      <li>Node.js</li>
+    </ul>
+    <script>
+      let lis = document.querySelectorAll('li')
+      lis.forEach(li => {
+        li.onclick = function() {
+          if(this.className == ''){ 
+            this.className = 'active'
+          }else {
+            this.className = ''
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./reset.css" />
+    <title>事件练习</title>
+  </head>
+  <style>
+
+    ul {
+      display: flex;
+      background-color: #0a0e10;
+      padding: 40px;
+    }
+
+    li {
+      margin: 10px;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    li > img {
+      width: 90px;
+      margin-bottom: 5px;
+      border: 5px solid #7a7a7a;
+      border-radius: 0 14px;
+    }
+
+    li.active > img {
+      border-color: orange;
+    }
+
+  </style>
+  <body>
+    <ul>
+      <li class="active">
+        <img src="./imgs/smallskin-5.jpg" alt="" />
+        <span>时之愿境</span>
+      </li>
+      <li>
+        <img src="./imgs/smallskin-4.jpg" alt="" />
+        <span>时之祈愿</span>
+      </li>
+      <li>
+        <img src="./imgs/smallskin-3.jpg" alt="" />
+        <span>遇见神鹿</span>
+      </li>
+      <li>
+        <img src="./imgs/smallskin-2.jpg" alt="" />
+        <span>森&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      </li>
+      <li>
+        <img src="./imgs/smallskin-1.jpg" alt="" />
+        <span>鹿灵守心</span>
+      </li>
+    </ul>
+
+    <script>
+
+      let lis = document.querySelectorAll('li')
+
+      lis.forEach(li => li.onmousemove = function () {
+        lis.forEach(li => li.classList.remove('active'))
+        this.classList.add('active')
+      })
+
+    </script>
+
+  </body>
+</html>

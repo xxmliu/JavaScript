@@ -313,3 +313,136 @@ https://www.runoob.com/jsref/dom-obj-event.html
 </html>
 ```
 
+# querySelector和classList
+
+**querySelector:** 直接查询到元素本身
+
+**使用场景:** 我们明确知晓要查询的元素只有1个时, 采用此方案更合理
+
+**classList** 是通过构造函数创建出的对象, 属于对 原始的className 的封装,提供强大的辅助功能
+
+toggle: 开关, 切换
+
+- 自动判断目标样式是否存在, 实现切换效果
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./reset.css" />
+    <title>class练习</title>
+  </head>
+  <style>
+    li {
+      display: inline-block;
+      padding: 5px 10px;
+      background-color: #ccc;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    li.active {
+      color: white;
+      background-color: orange;
+    }
+
+    .switch {
+      width: 80px;
+      background-color: #ccc;
+      border-radius: 30px;
+      display: flex;
+      padding: 3px;
+      cursor: pointer;
+      transition: 0.5s;
+    }
+
+    .switch span {
+      width: 30px;
+      height: 30px;
+      background-color: #666;
+      border-radius: 50%;
+      transition: 0.5s;
+    }
+
+    .switch.open {
+      background-color: orange;
+    }
+
+    .switch.open > span {
+      transform: translateX(145%);
+      background-color: pink;
+    }
+
+    #box {
+      width: 200px;
+      height: 200px;
+      background-color: gray;
+      transition: 0.3s;
+    }
+
+    #box.open {
+      border-radius: 50%;
+      background-color: orange;
+    }
+  </style>
+  <body>
+    <h2>勾选你的技术栈:</h2>
+    <ul>
+      <li>HTML</li>
+      <li>CSS</li>
+      <li>JS</li>
+      <li>DOM</li>
+      <li>Vue</li>
+      <li>Node.js</li>
+    </ul>
+    <hr />
+    <div class="switch"><span></span></div>
+    <hr />
+    <div id="box"></div>
+    <script>
+      let lis = document.querySelectorAll("li");
+      lis.forEach((li) => {
+        li.onclick = function () {
+          if (this.className == "") {
+            this.className = "active";
+          } else {
+            this.className = "";
+          }
+        };
+      });
+
+      // querySelector: 直接查询到元素本身
+      // 使用场景: 我们明确知晓要查询的元素只有1个时, 采用此方案更合理
+      let my_switch = document.querySelector(".switch");
+      console.log("my_switch:", my_switch);
+      my_switch.onclick = function () {
+        console.dir(this);
+        // classList 是通过构造函数创建出的对象, 属于对 原始的className 的封装
+        // 提供强大的辅助功能
+        // toggle: 开关, 切换
+        // 自动判断目标样式是否存在, 实现切换效果
+        this.classList.toggle("open");
+      };
+
+      // let switchs = document.querySelectorAll('.switch')
+      // console.log(switchs);
+      //   switchs[0].onclick = function () {
+      //     if(this.className == 'switch'){
+      //       this.className = 'switch open'
+      //     }else{
+      //       this.className = 'switch'
+      //     }
+      //   }
+
+      const box = document.querySelector("#box");
+      box.onclick = function () {
+        this.classList.toggle("open");
+      }
+      
+    </script>
+  </body>
+</html>
+```
+

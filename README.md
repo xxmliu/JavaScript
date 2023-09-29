@@ -212,3 +212,15 @@ https://www.runoob.com/jsref/dom-obj-event.html
 - query:查询 selector:选择器 all:所有
 - 通过选择器查找所有符合的元素
 - 此方式查询的结果, 是类数组类型, 但是其原型 NodeList中存在forEach方法可以实现遍历操作
+
+# querySelector和classList
+
+**querySelector:** 直接查询到元素本身
+
+**使用场景:** 我们明确知晓要查询的元素只有1个时, 采用此方案更合理
+
+**classList** 是通过构造函数创建出的对象, 属于对 原始的className 的封装,提供强大的辅助功能
+
+toggle: 开关, 切换
+
+- 自动判断目标样式是否存在, 实现切换效果

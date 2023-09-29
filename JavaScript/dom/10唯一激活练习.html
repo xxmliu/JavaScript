@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./reset.css">
+  <title>唯一激活练习</title>
+</head>
+<style>
+
+  ul {
+    display: flex;
+    justify-content: center;
+    width: 600px;
+    height: 40px;
+    line-height: 40px;
+    background-color: #002c69;
+    color: #fff;
+  }
+
+  li {
+    width: calc((100% - 100px) / 5);
+    text-align: center;
+    transition: 0.6s;
+    cursor: pointer;
+  }
+
+  li.active {
+    background-color: #F39700;
+  }
+
+</style>
+<body>
+  <ul>
+    <li class="active">首页</li>
+    <li>关于净美仕</li>
+    <li>公司动态</li>
+    <li>产品中心</li>
+    <li>联系我们</li>
+  </ul>
+  <script>
+
+    let lis = document.querySelectorAll('li')
+    lis.forEach( li => li.onclick = function () { 
+      // 找到激活的元素，然后用remove删除
+      let li_active = document.querySelector('li.active')
+      li_active.classList.remove('active')
+      
+      this.classList.add('active')
+    } )
+
+  </script>
+</body>
+</html>

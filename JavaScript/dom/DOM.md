@@ -446,3 +446,130 @@ toggle: 开关, 切换
 </html>
 ```
 
+# 唯一激活
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./reset.css">
+  <title>唯一激活</title>
+</head>
+<style>
+
+ul {
+  width: 200px;
+}
+
+  li {
+    padding: 10px;
+    background-color: #ccc;
+    margin-bottom: 10px;
+    transition: 0.6s;
+  }
+
+  li.active {
+    box-shadow: 0 0 2px 2px rgba(50, 50, 50, 0.1);
+    padding-left: 30px;
+    background-color: orange;
+    color: white;
+  }
+
+</style>
+<body>
+  <ul>
+    <!-- active: 激活, 代表此项目默认选中状态 -->
+    <li class="active">阶段1: 晓宇</li>
+    <li>阶段2: 亮亮</li>
+    <li>阶段3: 小新</li>
+    <li class="xx yy">阶段4: 铭铭</li>
+    <li>阶段5: 文华</li>
+  </ul>
+  <script>
+
+    
+
+    let lis = document.querySelectorAll('li')
+    lis.forEach(li => {
+      li.onclick = function () {
+
+        // 唯一性激活效果:
+        // 先删除之前 激活的元素, 再激活新的
+        // 预判: 只有1个处于激活状态, qs
+        let li_active = document.querySelector('li.active')
+        // 采用 classList 提供的 remove 方法, 删除指定的样式类
+        li_active.classList.remove('active')
+
+        // = : 会导致覆盖操作, 覆盖原有的值. 此写法存在风险.
+        // this.className = 'active'
+
+        // classList中提供了 add 方案, 会保留原有的class 然后添加新的
+        this.classList.add('active')
+      }
+    })
+  </script>
+</body>
+</html>
+```
+
+练习：
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./reset.css">
+  <title>唯一激活练习</title>
+</head>
+<style>
+
+  ul {
+    display: flex;
+    justify-content: center;
+    width: 600px;
+    height: 40px;
+    line-height: 40px;
+    background-color: #002c69;
+    color: #fff;
+  }
+
+  li {
+    width: calc((100% - 100px) / 5);
+    text-align: center;
+    transition: 0.6s;
+    cursor: pointer;
+  }
+
+  li.active {
+    background-color: #F39700;
+  }
+
+</style>
+<body>
+  <ul>
+    <li class="active">首页</li>
+    <li>关于净美仕</li>
+    <li>公司动态</li>
+    <li>产品中心</li>
+    <li>联系我们</li>
+  </ul>
+  <script>
+
+    let lis = document.querySelectorAll('li')
+    lis.forEach( li => li.onclick = function () { 
+      // 找到激活的元素，然后用remove删除
+      let li_active = document.querySelector('li.active')
+      li_active.classList.remove('active')
+      
+      this.classList.add('active')
+    } )
+
+  </script>
+</body>
+</html>
+```
+

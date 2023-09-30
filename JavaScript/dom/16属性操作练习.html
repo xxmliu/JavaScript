@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>属性操作练习</title>
+  </head>
+  <link rel="stylesheet" href="reset.css" />
+  <style>
+    #box {
+      width: 400px;
+      box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+    }
+    #box > img {
+      width: 100%;
+    }
+    #box > div {
+      display: flex;
+    }
+    #box > div > img {
+      flex: 1;
+      border: 3px solid transparent;
+    }
+    #box > div > img.active {
+      border-color: orangered;
+    }
+  </style>
+  <body>
+    <div id="box">
+      <img src="imgs/1_lg.jpg" alt="" />
+      <div class="small">
+        <!-- 自定义属性: 在小图上存放其对应的大图地址 -->
+        <img data-big="imgs/1_lg.jpg" class="active" src="imgs/1_sm.jpg" alt=""/>
+        <img data-big="imgs/2_lg.jpg" src="imgs/2_sm.jpg" alt="" />
+        <img data-big="imgs/3_lg.jpg" src="imgs/3_sm.jpg" alt="" />
+        <img data-big="imgs/4_lg.jpg" src="imgs/4_sm.jpg" alt="" />
+        <img data-big="imgs/5_lg.jpg" src="imgs/5_sm.jpg" alt="" />
+      </div>
+    </div>
+    <script>
+      let imgs = document.querySelectorAll('#box>.small>img')
+      imgs.forEach(img => {
+        img.onmousemove = function () { 
+          imgs.forEach(img => img.classList.remove('active'))
+          this.classList.add('active')
+
+          // 读取大图地址:
+          let big_src = img.dataset.big 
+          let img_big = document.querySelector('#box>img')
+          // 修改 大图元素 显示的图片地址 src
+          img_big.src = big_src
+        }
+      })
+    </script>
+  </body>
+</html>

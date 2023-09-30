@@ -62,7 +62,9 @@
 
 **事件:** 在元素上触发的一些事情, 能够触发的事件都被系统提前规定好 
 
-- 所有 **on** 开头的属性, 都是事件相关的
+- 操作元素的属性:事件相关: 由浏览器规定的一系列事件这些属性都以 on开头
+- 鼠标点击: onclick
+- 鼠标悬浮: onmouseover
 
 https://www.runoob.com/jsref/dom-obj-event.html 
 
@@ -109,6 +111,22 @@ https://www.runoob.com/jsref/dom-obj-event.html
 ```
 
 # style操作
+
+样式相关
+
+- style: 内联样式. 优先级最高
+
+- class: 样式类
+
+  ​	className: 本体. 一个字符串类型的值
+
+  ​	classList: 通过构造函数生成的一个对象, 提供了操作className 的一系列方法
+
+  ​		toggle: 切换
+
+  ​		add: 添加
+
+  ​		remove: 删除
 
 ```html
 <!DOCTYPE html>
@@ -749,3 +767,22 @@ ul {
 </html>
 ```
 
+# 属性操作
+
+- 1个元素上, 自带很多属性
+- 系统属性: 官方默认提供的, 每个属性都有自己的作用
+- 自定义属性: 添加一些自己的属性, 有两种添加方式
+
+​			**旧方案, 不规范: 随便写, 需要用固定方法来操作**
+
+​					自定义属性: 用使用专业的方法来操作
+
+​						Attribute: 属性
+
+​    					getAttribute: 读取元素上的自定义属性的值
+
+​			**新方案: 用 data- 做开头, 存储在 dataset 属性中**
+
+​						读取使用 data- 声明的属性, 从 dataset 中读取
+
+​						多个单词 是 小驼峰命名法

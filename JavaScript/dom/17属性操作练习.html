@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>属性操作练习</title>
+  </head>
+  <link rel="stylesheet" href="reset.css" />
+  <style>
+    #box {
+      width: 600px;
+    }
+    #box > div {
+      display: flex;
+    }
+    #box > div > img {
+      border: 3px solid transparent;
+    }
+    #box > div > img.active {
+      background-color: orange;
+    }
+    #box > img {
+      width: 100%;
+    }
+  </style>
+  <body>
+    <div id="box">
+      <div>
+        <img
+          data-big="imgs/bigskin-1.jpg"
+          class="active"
+          src="imgs/smallskin-1.jpg"
+          alt=""/>
+        <img data-big="imgs/bigskin-2.jpg" src="imgs/smallskin-2.jpg" alt="" />
+        <img data-big="imgs/bigskin-3.jpg" src="imgs/smallskin-3.jpg" alt="" />
+        <img data-big="imgs/bigskin-4.jpg" src="imgs/smallskin-4.jpg" alt="" />
+        <img data-big="imgs/bigskin-5.jpg" src="imgs/smallskin-5.jpg" alt="" />
+      </div>
+      <img src="./imgs/bigskin-1.jpg" alt="" />
+    </div>
+
+    <script>
+      let imgs = document.querySelectorAll('#box>div>img')
+      imgs.forEach(img => img.onmousemove = function () { 
+        imgs.forEach(img => img.classList.remove('active'))
+        this.classList.add('active')
+
+        let big_src = img.dataset.big
+        let img_big = document.querySelector('#box>img')
+        img_big.src = big_src
+      })
+    </script>
+  </body>
+</html>

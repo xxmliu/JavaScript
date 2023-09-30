@@ -19,3 +19,12 @@ li {
 img {
   display: block;
 }
+
+table {
+  border-collapse: collapse;
+}
+
+html {
+  font-size: 16px;
+  color: #333;
+}

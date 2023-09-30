@@ -107,6 +107,8 @@
 ```
 
 # Vue中元素属性的动态绑定  
+一旦为属性添加了 :(v-bind:)，那么vue在解析该标签时，将会把该属性当做是动态属性，此时双引号中的
+代码将被解析为js代码段，vue会把js代码段的返回值设置给标签的属性值
 
 ```html
 <input 
@@ -120,6 +122,60 @@
 ```js
 data: {
   inputType: 'password'
+},
+```
+
+# 动态修改class类名  
+
+```html
+<div @click="activeIndex=0" :class="activeIndex == 0 ? 'active' : ''">介绍</div>
+<div @click="activeIndex=1" :class="activeIndex == 1 ? 'active' : ''">演职人员</div>
+<div @click="activeIndex=2" :class="activeIndex == 2 ? 'active' : ''">奖项</div>
+<div @click="activeIndex=3" :class="activeIndex == 3 ? 'active' : ''">图集</div>
+```
+
+```js
+data: {
+	activeIndex: 0,  // 描述激活项的下标
+},
+```
+
+# 动态的修改style属性  
+
+```html
+<div class="tabs">
+  <div @click="activeIndex=0" :class="activeIndex == 0 ? 'active' : ''">介绍</div>
+  <div @click="activeIndex=1" :class="activeIndex == 1 ? 'active' : ''">演职人员</div>
+  <div @click="activeIndex=2" :class="activeIndex == 2 ? 'active' : ''">奖项</div>
+  <div @click="activeIndex=3" :class="activeIndex == 3 ? 'active' : ''">图集</div>
+</div>
+
+<div :style="`display:${activeIndex == 0 ? 'block' : 'none'};`">介绍的具体内容</div>
+<div :style="`display:${activeIndex == 1 ? 'block' : 'none'};`">演职人员的具体内容</div>
+<div :style="{display:activeIndex==2 ? 'block' : 'none'}">奖项的具体内容</div>
+<div :style="{display:activeIndex==3 ? 'block' : 'none'}">图集的具体内容</div>
+```
+
+```js
+data: {
+  activeIndex: 0,  // 描述激活项的下标
+},
+```
+
+# v-show
+
+vue指令：控制元素true或者false（显示或者隐藏）
+
+```html
+<div v-show="activeIndex == 0">介绍的具体内容</div>
+<div v-show="activeIndex == 1">演职人员的具体内容</div>
+<div v-show="activeIndex == 2">奖项的具体内容</div>
+<div v-show="activeIndex == 3">图集的具体内容</div>
+```
+
+```js
+data: {
+  activeIndex: 0,  // 描述激活项的下标
 },
 ```
 

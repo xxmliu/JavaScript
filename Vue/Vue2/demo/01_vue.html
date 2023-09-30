@@ -6,6 +6,20 @@
     <title>vue</title>
   </head>
   <script src="./js/vue.js"></script>
+  <style>
+    .tabs {
+      display: flex;
+    }
+    .tabs div{
+      border-bottom: 2px solid #999;
+      padding: 10px;
+      cursor: pointer;
+    }
+    .tabs .active {
+      color: red;
+      border-bottom: 2px solid red;
+    }
+  </style>
   <body>
     <div id="app">
       <h1>电影详情</h1>
@@ -22,6 +36,22 @@
       <hr>
       <button @click="clickBtn1()">坚如磐石</button>
       <button @click="clickBtn2()">奥本海默</button>
+      <hr>
+      <div class="tabs">
+        <div @click="activeIndex=0" :class="activeIndex == 0 ? 'active' : ''">介绍</div>
+        <div @click="activeIndex=1" :class="activeIndex == 1 ? 'active' : ''">演职人员</div>
+        <div @click="activeIndex=2" :class="activeIndex == 2 ? 'active' : ''">奖项</div>
+        <div @click="activeIndex=3" :class="activeIndex == 3 ? 'active' : ''">图集</div>
+      </div>
+      <div :style="`display:${activeIndex == 0 ? 'block' : 'none'};`">介绍的具体内容</div>
+      <div :style="`display:${activeIndex == 1 ? 'block' : 'none'};`">演职人员的具体内容</div>
+      <div :style="{display:activeIndex==2 ? 'block' : 'none'}">奖项的具体内容</div>
+      <div :style="{display:activeIndex==3 ? 'block' : 'none'}">图集的具体内容</div>
+
+      <div v-show="activeIndex == 0">介绍的具体内容</div>
+      <div v-show="activeIndex == 1">演职人员的具体内容</div>
+      <div v-show="activeIndex == 2">奖项的具体内容</div>
+      <div v-show="activeIndex == 3">图集的具体内容</div>
     </div>
     <script>
       // 创建Vue对象，管理 #app，动态设置文本内容
@@ -32,7 +62,8 @@
           actors: ['雷佳音', '张国立', '于和伟'],
           type: '动作 悬疑 剧情',
           showingon: '2023-09-28',
-          inputType: 'password'
+          inputType: 'password',
+          activeIndex: 0,  // 描述激活项的下标
         },
         methods: {
           clickBtn1(){

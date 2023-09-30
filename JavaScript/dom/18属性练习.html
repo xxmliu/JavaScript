@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>属性练习</title>
+  <link rel="stylesheet" href="reset.css">
+  <style>
+
+    #box {
+      width: 650px;
+      overflow: hidden;
+    }
+
+    #box>div {
+      display: flex;
+      transition: 0.3s;
+    }
+
+    #box>div>img {
+      width: 100%;
+      flex: none;
+    }
+
+    #box>ul {
+      width: 100%;
+      height: 40px;
+      line-height: 40px;
+      display: flex;
+      justify-content: center;
+      color: #B1B2BE;
+      background-color: #000;
+    }
+
+    #box>ul>li {
+      width: calc(100% / 5);
+      height: 100%;
+      text-align: center;
+    }
+
+    #box>ul>li.active {
+      color: #F3C258;
+      background-color: #262626;
+    }
+  </style>
+</head>
+<body>
+  <div id="box">
+    <div>
+      <img src="wzry_imgs/1.jpeg" alt="">
+      <img src="wzry_imgs/2.jpeg" alt="">
+      <img src="wzry_imgs/3.jpeg" alt="">
+      <img src="wzry_imgs/4.jpeg" alt="">
+      <img src="wzry_imgs/5.jpeg" alt="">
+    </div>
+    <ul>
+      <li data-x="0" class="active">夏洛特语音爆料</li>
+      <li data-x="-100%">合金弹头4月上线</li>
+      <li data-x="-200%">城市主理人招募</li>
+      <li data-x="-300%">王者炸麦了</li>
+      <li data-x="-400%">荣耀大话王</li>
+    </ul>
+  </div>
+  <script>
+    let lis = document.querySelectorAll('li')
+    lis.forEach(li => li.onmousemove = function() {
+      lis.forEach(li => li.classList.remove('active'))
+      this.classList.add('active')
+      
+      let x = li.dataset.x
+      let div = document.querySelector('#box>div')
+
+      div.style.transform = `translateX(${x})`
+    })
+  </script>
+</body>
+</html>

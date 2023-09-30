@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./reset.css">
+  <title>广告弹窗</title>
+</head>
+<style>
+
+  #cb {
+    width: 500px;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    transform: translateY(106%);
+    transition: 0.3s;
+  }
+
+  #cb .cha {
+    width: 30px;
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    cursor: pointer;
+  }
+
+  #cb.active {
+    transform: translateY(0);
+  }
+
+  #cb .cha:active {
+    opacity: 0.5;
+  }
+
+  #cb .gg {
+    width: 100%;
+  }
+
+</style>
+<body>
+  <div id="cb">
+    <img class="cha" src="./imgs/cha.png" alt="">
+    <img class="gg" src="./imgs/banner3.png" alt="">
+  </div>
+
+  <script>
+    setTimeout(() => {
+      let cb = document.getElementById('cb')
+      cb.classList.add('active')
+    }, 3000);
+
+    // 明确知晓: 关闭按钮只有一个
+    let cha = document.querySelector('#cb>.cha')
+    cha.onclick = function () { 
+      let cb = document.getElementById('cb')
+      cb.classList.remove('active')
+    }
+  </script>
+</body>
+</html>

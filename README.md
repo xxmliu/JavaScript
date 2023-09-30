@@ -224,3 +224,5 @@ https://www.runoob.com/jsref/dom-obj-event.html
 toggle: 开关, 切换
 
 - 自动判断目标样式是否存在, 实现切换效果
+
+# 广告弹窗

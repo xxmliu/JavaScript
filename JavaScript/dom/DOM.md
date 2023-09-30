@@ -786,3 +786,70 @@ ul {
 ​						读取使用 data- 声明的属性, 从 dataset 中读取
 
 ​						多个单词 是 小驼峰命名法
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>属性操作练习</title>
+  </head>
+
+  <link rel="stylesheet" href="reset.css" />
+  <style>
+
+    ul {
+      display: flex;
+      margin-top: 10px;
+    }
+
+    li {
+      margin: 0 10px 10px 0;
+      background-color: #eee;
+      padding: 10px 25px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    li.active {
+      color: #fff;
+      background-color: orange;
+    }
+
+  </style>
+  <body>
+    <h2>请选择今日的午餐:</h2>
+    <ul>
+      <!-- 如何在元素上 存储单价信息? 通过自定义属性实现-->
+      <li data-price="22">黄焖鸡</li>
+      <li data-price="18">红烧牛肉面</li>
+      <li data-price="35">老乡鸡</li>
+      <li data-price="30">麻辣烫</li>
+      <li data-price="15">水果捞</li>
+      <li data-price="25">盖浇饭</li>
+    </ul>
+    <div id="box">消费金额: <b>0</b></div>
+
+    <script>
+      let lis = document.querySelectorAll('li')
+      lis.forEach(li => li.onclick = function () { 
+        this.classList.toggle('active')
+
+        let li_active = document.querySelectorAll('li.active')
+        let total = 0
+        li_active.forEach(li=> {
+          // string * number = number
+          let price = li.dataset.price * 1
+          total += price
+        })
+
+        let b = document.querySelector('#box>b')
+        b.innerHTML = total
+      })
+    </script>
+
+  </body>
+</html>
+```
+

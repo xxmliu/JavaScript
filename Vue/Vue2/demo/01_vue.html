@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vue</title>
+  </head>
+  <script src="./js/vue.js"></script>
+  <body>
+    <div id="app">
+      <h1>电影详情</h1>
+      <img :src="url" alt="">
+      <h3>电影名称：{{ name }}</h3>
+      <h3>电影主演：{{ actors.join('/') }}</h3>
+      <h3>电影类型：{{ type }}</h3>
+      <h3>电影上映日期：{{ showingon }}</h3>
+    </div>
+    <hr>
+    <button id="btn1">坚如磐石</button>
+    <button id="btn2">奥本海默</button>
+    <script>
+      // 创建Vue对象，管理 #app，动态设置文本内容
+      let vm = new Vue({
+        data: {
+          url:'https://p0.pipi.cn/mmdb/fb738633be1b128d3357e2418539bafea3dbb.jpg?imageView2/1/w/464/h/644',
+          name:'坚如磐石',
+          actors: ['雷佳音', '张国立', '于和伟'],
+          type: '动作 悬疑 剧情',
+          showingon: '2023-09-28'
+        },
+        el: '#app'
+      })
+
+      let btn1 = document.getElementById('btn1')
+      btn1.onclick = function() { 
+        vm.url = 'https://p0.pipi.cn/mmdb/fb738633be1b128d3357e2418539bafea3dbb.jpg?imageView2/1/w/464/h/644'
+        vm.name = '坚如磐石',
+        vm.actors = ['雷佳音', '张国立', '于和伟'],
+        vm.type = '动作 悬疑 剧情',
+        vm.showingon = '2023-09-28'
+      }
+
+      let btn2 = document.getElementById('btn2')
+      btn2.onclick = function() { 
+        vm.url = 'https://p0.pipi.cn/mmdb/fb738633537f2a8ea38ea34efb781c44a0ea1.jpg?imageView2/1/w/464/h/644'
+        vm.name = '奥本海默',
+        vm.actors = ['基里安·墨菲', '小罗伯特·唐尼', '弗洛伦斯·皮尤'],
+        vm.type = '剧情 传记 历史',
+        vm.showingon = '2023-08-30'
+      }
+    </script>
+  </body>
+</html>
